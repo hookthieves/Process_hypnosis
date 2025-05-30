@@ -1,8 +1,4 @@
-Certainly! Here’s your **Evasive Process Hypnosis** project formatted into the same professional red team style `README.md` as before:
-
----
-
-# Evasive Process Hypnosis
+# Process Hypnosis
 
 An advanced Windows process injection tool demonstrating stealthy shellcode injection techniques to evade detection. This project showcases XOR-encrypted shellcode, dynamic target selection, APC injection, and anti-debugging measures designed for security research and red team engagements.
 
