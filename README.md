@@ -57,7 +57,10 @@ This project is for educational use only and should only be run in controlled, a
 
 MIT License – See LICENSE file for details.
 
-## Acknowledgments
+## Resources
 
-* Inspired by advanced malware and red team evasion techniques
-* Thanks to the security research community for pioneering injection and evasion methods
+* Windows API Documentation
+* Process Injection Techniques
+* Maldev Academy
+* S12-H4CK blog post
+
