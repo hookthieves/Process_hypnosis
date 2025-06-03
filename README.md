@@ -1,66 +1,63 @@
-# Process Hypnosis
+Evasive Process Hypnosis
+Overview
+This project implements an advanced version of the Process Hypnosis technique for shellcode injection, designed to be more evasive against modern antivirus and EDR solutions. It builds upon the original technique by @NUL0x4C and @mrd0x from MalDevAcademy, adding features like shellcode encryption, random process selection, APC injection, and anti-debugging checks.
+Features
 
-An advanced Windows process injection tool demonstrating stealthy shellcode injection techniques to evade detection. This project showcases XOR-encrypted shellcode, dynamic target selection, APC injection, and anti-debugging measures designed for security research and red team engagements.
+Shellcode Encryption: XOR-encrypts the shellcode (calc.exe launcher) to evade static analysis.
+Random Process Selection: Targets common Windows processes (e.g., svchost.exe, explorer.exe) to blend in.
+APC Injection: Uses QueueUserAPC for less detectable shellcode execution.
+Anti-Debugging: Detects debuggers using IsDebuggerPresent and CheckRemoteDebuggerPresent.
+Dynamic Process Enumeration: Finds running processes with CreateToolhelp32Snapshot.
+Clean Memory Management: Minimizes forensic artifacts by freeing allocated memory and closing handles.
 
-## Features
+Requirements
 
-* **Shellcode Obfuscation:** XOR-encrypted shellcode decrypted at runtime to avoid static detection
-* **Dynamic Process Selection:** Targets common Windows processes (e.g., `svchost.exe`, `explorer.exe`) to blend with legitimate activity
-* **APC Injection:** Uses Asynchronous Procedure Calls to inject shellcode into a target thread, minimizing direct memory manipulation footprints
-* **Anti-Debugging:** Detects debuggers with `IsDebuggerPresent` and `CheckRemoteDebuggerPresent` to evade analysis
-* **Clean Resource Management:** Properly releases handles and memory to reduce forensic traces
+Windows OS (tested on Windows 10/11)
+Windows SDK
+C compiler (e.g., Visual Studio)
+Administrative privileges for process injection
 
-## Prerequisites
+Compilation
 
-* Windows OS (x64 architecture)
-* C compiler (e.g., Microsoft Visual Studio)
-* Windows SDK (for WinAPI functions)
-* Administrative privileges for process manipulation
+Clone the repository:git clone https://github.com/yourusername/process-hypnosis.git
 
-## Compilation
 
-Compile using Microsoft Visual Studio’s command line:
+Open the project in Visual Studio or compile with a C compiler:cl EvasiveProcessHypnosis.c /link /out:process_hypnosis.exe
 
-```bash
-cl main.c /link /out:EvasiveHypnosis.exe
-```
 
-## Usage
+Ensure the Windows SDK is installed for required headers (Windows.h, TlHelp32.h).
 
-1. Compile the source code to produce the executable.
-2. Run the executable with administrator privileges.
-3. The program will:
+Usage
 
-   * Check for debugger presence and exit if detected
-   * Dynamically select a target system process (e.g., `svchost.exe`)
-   * Allocate memory within the target process
-   * Decrypt and inject the XOR-encrypted shellcode using APC injection
-   * Queue an APC on the target thread to execute the shellcode
+Run the compiled executable in a controlled environment (e.g., a virtual machine):.\process_hypnosis.exe
 
-### Example output
 
-```
-[+] APC queued to thread 1234 in process 5678
-```
+The program will:
+Check for debuggers and exit if detected.
+Select a random target process (svchost.exe, explorer.exe, etc.).
+Inject encrypted shellcode into the target process using APC.
+Execute the shellcode (launches calc.exe for demonstration).
 
-## Notes
 
-* The example shellcode launches `calc.exe` as a demonstration payload; replace with custom shellcode for your needs.
-* APC injection requires the target thread to be in an alertable state. If injection fails, consider alternative approaches or methods to induce an alertable state.
-* This tool is intended strictly for educational and authorized security research purposes. Ensure compliance with all applicable laws and organizational policies.
 
-## Disclaimer
+Notes
 
-This project is for educational use only and should only be run in controlled, authorized environments. The author is not liable for misuse or legal violations resulting from this code.
+Educational Use Only: This code is for learning and research purposes. Do not use it maliciously.
+Shellcode: The included shellcode launches calc.exe. Replace it with custom shellcode as needed.
+Limitations:
+XOR encryption is basic; consider AES or polymorphism for production use.
+APC injection requires the target thread to be alertable.
+Additional anti-debugging techniques (e.g., timing checks) can be added.
 
-## License
 
-MIT License – See LICENSE file for details.
+Testing: Always test in a sandbox or virtual machine to avoid unintended consequences.
 
-## Resources
+Disclaimer
+This project is for educational purposes only. The author is not responsible for any misuse or damage caused by this code. Use responsibly and in compliance with applicable laws.
+Credits
 
-* Windows API Documentation
-* Process Injection Techniques
-* Maldev Academy
-* S12-H4CK blog post
+Original Process Hypnosis technique by @NUL0x4C and @mrd0x (MalDevAcademy)
+Enhanced by [Your Name]
 
+License
+MIT License. See LICENSE for details.
