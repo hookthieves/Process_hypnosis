@@ -17,7 +17,7 @@ This repository contains a Windows-based shellcode injector that uses the proces
 ## Building the Project
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/process-hypnosis-injector.git
+   git clone https://github.com/hookthieves/Process_hypnosis.git
    cd process-hypnosis-injector
    ```
 2. Compile the code using a C compiler. For Visual Studio:
